@@ -1,5 +1,5 @@
-# LP1
- DISCIPLINA DE LÓGICA DE PROGRAMAÇÃO
+# LP1 DISCIPLINA DE LÓGICA DE PROGRAMAÇÃO
+
 Programa em C++ de uma interface de linha de comando simples para um sistema de pedidos de sanduíches e sucos em uma lanchoente. Os usuários podem escolher entre dois perfis: "Gerente" e "Cliente". O perfil de Gerente oferece opções para gerenciar o menu, enquanto o perfil de Cliente permite que os clientes façam pedidos e gerenciem seu carrinho de compras.
 
 Principais componentes e funcionalidades do código:
