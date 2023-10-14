@@ -1,0 +1,10 @@
+Bauru
+10
+Misto-Quente
+4
+X-Burguer
+9
+X-Dog
+7
+X-Salada
+8.5

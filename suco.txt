@@ -1,0 +1,14 @@
+Abacaxi
+6
+Caja
+6.5
+Caju
+5
+Laranja
+5.5
+Limao
+7.5
+Morango
+10
+melancia
+4
