@@ -1,21 +1,24 @@
 #ifndef CLIENTE_HPP
 #define CLIENTE_HPP
-
-
-#include <vector>
 #include <string>
+#include <map>
 
+// Definição da estrutura CarrinhoItem, que representa um item no carrinho.
 struct CarrinhoItem {
-    std::string nome;
-    float valor;
+    std::string nome; // Nome do produto
+    float valor; // Valor do produto
 };
 
-void lerArquivoSanduiche();
-void lerArquivoSuco();
+// Funções para ler informações de arquivo.
+void lerArquivoSanduiche(); // Lê informações sobre sanduíches de um arquivo.
+void lerArquivoSuco(); // Lê informações sobre sucos de um arquivo.
 
-void escolherProduto();
-void verCarrinho(); 
+// Funções relacionadas ao carrinho de compras.
+void escolherProduto(std::map<std::string, float> &carrinho); // Permite ao cliente escolher produtos e adicioná-los ao carrinho.
+void verCarrinho(const std::map<std::string, float> &carrinho);  // Exibe o conteúdo do carrinho de compras.
 
-float calcularValorTotalCarrinho();
-void excluirItemDoCarrinho(std::vector<CarrinhoItem> &carrinho, const std::string &itemASerExcluido); 
+// Funções relacionadas ao cálculo do valor total do carrinho e à remoção de itens do carrinho.
+float calcularValorTotalCarrinho(const std::map<std::string, float> &carrinho); // Calcula o valor total dos itens no carrinho.
+void excluirItemDoCarrinho(std::map<std::string, float> &carrinho, const std::string &itemASerExcluido); // Remove um item específico do carrinho.
+
 #endif

@@ -1,17 +1,17 @@
 #include <iostream>
 #include <map>
-#include "cliente.hpp"
-#include <vector>
+#include "cliente.hpp" // Inclui arquivos de cabeçalho personalizados
 #include <fstream>
-#include "funcoesCompartilhadas.hpp"
+#include "funcoesCompartilhadas.hpp" // Inclui arquivos de cabeçalho personalizados
 
 using namespace std;
 
-extern map<string, float> sanduiche;
+extern map<string, float> sanduiche; // Mapas para sanduíches e sucos
 extern map<string, float> suco;
-vector<CarrinhoItem> carrinho;
+map<string, float> carrinho;
 
-void escolherProduto()
+// Função para escolher um produto e adicioná-lo ao carrinho
+void escolherProduto(map<std::string, float> &carrinho)
 {
   int opcao = 0;
   while (opcao != 3)
@@ -23,6 +23,7 @@ void escolherProduto()
     cout << "\tDigite a opcao desejada: ";
     cin >> opcao;
 
+
     if (opcao == 1)
     {
       string saborSanduiche;
@@ -31,31 +32,12 @@ void escolherProduto()
 
       if (sanduiche.find(saborSanduiche) != sanduiche.end())
       {
-        float valor = sanduiche[saborSanduiche];
-        bool found = false;
-        for (CarrinhoItem &item : carrinho)
-        {
-          if (item.nome == saborSanduiche)
-          {
-            item.valor += valor;
-            found = true;
-            break;
-          }
-        }
-
-        if (!found)
-        {
-          CarrinhoItem novoItem;
-          novoItem.nome = saborSanduiche;
-          novoItem.valor = valor;
-          carrinho.push_back(novoItem);
-        }
-
-        cout << "\n---Sanduiche " << saborSanduiche << " adicionado ao carrinho.---" << endl;
+        cout << "Sanduiche " << saborSanduiche << " adicionado ao carrinho." << endl;
+        carrinho[saborSanduiche] = sanduiche[saborSanduiche]; // Adiciona o preço do sanduíche
       }
       else
       {
-        cout << "\n\t---Sanduiche não encontrado no menu.---" << endl;
+        cout << "Sanduiche não encontrado no menu." << endl;
       }
     }
     else if (opcao == 2)
@@ -66,31 +48,12 @@ void escolherProduto()
 
       if (suco.find(saborSuco) != suco.end())
       {
-        float valor = suco[saborSuco];
-        bool found = false;
-        for (CarrinhoItem &item : carrinho)
-        {
-          if (item.nome == saborSuco)
-          {
-            item.valor += valor;
-            found = true;
-            break;
-          }
-        }
-
-        if (!found)
-        {
-          CarrinhoItem novoItem;
-          novoItem.nome = saborSuco;
-          novoItem.valor = valor;
-          carrinho.push_back(novoItem);
-        }
-
-        cout << "\n--Suco " << saborSuco << " adicionado ao carrinho.--" << endl;
+        cout << "Suco " << saborSuco << " adicionado ao carrinho." << endl;
+        carrinho[saborSuco] = suco[saborSuco]; // Adiciona o preço do suco
       }
       else
       {
-        cout << "\n---Suco não encontrado no menu.----" << endl;
+        cout << "Suco não encontrado no menu." << endl;
       }
     }
     else if (opcao == 3)
@@ -100,18 +63,19 @@ void escolherProduto()
   }
 }
 
-float calcularValorTotalCarrinho()
+// Função para calcular o valor total dos itens no carrinho
+float calcularValorTotalCarrinho(const map<string, float> &carrinho)
 {
-
   float valorTotal = 0;
   for (const auto &item : carrinho)
   {
-    valorTotal += item.valor;
+    valorTotal += item.second; // Adiciona o valor do produto ao valor total
   }
   return valorTotal;
 }
 
-void verCarrinho()
+// Função para visualizar o conteúdo do carrinho de compras
+void verCarrinho(const map<string, float> &carrinho)
 {
   if (carrinho.empty())
   {
@@ -122,24 +86,19 @@ void verCarrinho()
     cout << "\t=== Carrinho de Compras ===" << endl;
     for (const auto &item : carrinho)
     {
-      cout << "\tProduto: " << item.nome << endl;
-      cout << "\tValor: R$ " << item.valor << endl;
+      cout << "\tProduto: " << item.first << endl; // Chave (nome do produto)
+      cout << "\tValor: R$ " << item.second << endl; // Valor do produto
       cout << "\t--------------------------" << endl;
     }
   }
 }
 
-void excluirItemDoCarrinho(vector<CarrinhoItem> &carrinho, const string &itemASerExcluido)
+// Função para remover um item do carrinho
+void excluirItemDoCarrinho(map<string, float> &carrinho, const string &itemASerExcluido)
 {
-  for (auto it = carrinho.begin(); it != carrinho.end();)
+  auto it = carrinho.find(itemASerExcluido);
+  if (it != carrinho.end())
   {
-    if (it->nome == itemASerExcluido)
-    {
-      it = carrinho.erase(it);
-    }
-    else
-    {
-      ++it;
-    }
+    carrinho.erase(it);
   }
 }

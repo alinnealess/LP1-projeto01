@@ -1,5 +1,5 @@
 Bauru
-10
+6
 Misto-Quente
 4
 X-Burguer
@@ -8,3 +8,5 @@ X-Dog
 7
 X-Salada
 8.5
+X-Tudo
+10.5

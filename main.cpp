@@ -1,21 +1,19 @@
 #include <iostream>
-#include <vector>
+
 #include "gerente.hpp"
-#include "cliente.hpp"
+#include "cliente.hpp" // Inclui arquivos de cabeçalho personalizados
 #include <string>
-#include "funcoesCompartilhadas.hpp"
+#include "funcoesCompartilhadas.hpp" // Inclui arquivos de cabeçalho personalizados
 
 using namespace std;
 
-
 int main()
 {
+  map<string, float> carrinho; // Cria um mapa para o carrinho do cliente
 
-  lerArquivoSanduiche();
-  lerArquivoSuco();
-  int perfil = 0;
-
-  vector<CarrinhoItem> carrinho;
+  lerArquivoSanduiche(); // Carrega informações sobre sanduíches de um arquivo
+  lerArquivoSuco();      // Carrega informações sobre sucos de um arquivo
+  int perfil = 0;        // Inicializa a variável para o perfil do usuário
 
   while (perfil != 3)
   {
@@ -58,14 +56,18 @@ int main()
 
           cin >> opcao;
 
+          // Chama a função para listar sanduíches
           if (opcao == 1)
           {
-            listarSanduiches();
+            listarSanduiches(); 
           }
+          // Chama a função para listar sucos
           else if (opcao == 2)
           {
-            listarSucos();
+            listarSucos(); 
           }
+
+          // Chama a função para adicionar um novo sanduíche
           else if (opcao == 3)
           {
             string saborSanduiche;
@@ -77,10 +79,10 @@ int main()
             cout << "Digite o valor do sanduiche: ";
             cin >> valor;
 
-            cadastrarSanduiche(saborSanduiche, valor);
+            cadastrarSanduiche(saborSanduiche, valor); 
           }
 
-          // cadastrarSuco
+          // // Chama a função para adicionar um novo suco
           else if (opcao == 4)
           {
             string saborSuco;
@@ -109,19 +111,23 @@ int main()
 
             alterarSanduiche(saborSanduiche, valor);
           }
+
+          // Alterar valor de suco
           else if (opcao == 6)
           {
             string saborSuco;
             float valor;
 
-            cout << "Digite o sabor do sanduiche: ";
+            cout << "Digite o sabor do suco: ";
             cin >> saborSuco;
 
-            cout << "Digite o novo valor do sanduiche: ";
+            cout << "Digite o novo valor do suco: ";
             cin >> valor;
 
             alterarSuco(saborSuco, valor);
           }
+
+          // excluir sanduiche
           else if (opcao == 7)
           {
             string saborSanduiche;
@@ -130,6 +136,7 @@ int main()
             excluirSanduiche(saborSanduiche);
           }
 
+          // excluir suco
           else if (opcao == 8)
           {
             string saborSuco;
@@ -138,6 +145,7 @@ int main()
             excluirSuco(saborSuco);
           }
 
+          // encerrar loop
           else if (opcao == 9)
           {
             break;
@@ -170,7 +178,7 @@ int main()
           listarSanduiches();
         }
 
-        // listar sanduiches sucos
+        // listar  sucos
         else if (opcao == 2)
         {
           listarSucos();
@@ -179,22 +187,20 @@ int main()
         // escolher produto
         else if (opcao == 3)
         {
-          // string saborSanduiche;
-          // float valor;
-          escolherProduto();
+          escolherProduto(carrinho);
         }
 
         // calcular o valor da compra
         else if (opcao == 4)
         {
-          float valorTotal = calcularValorTotalCarrinho();
+          float valorTotal = calcularValorTotalCarrinho(carrinho);
           cout << "Valor total do carrinho: R$ " << valorTotal << endl;
         }
 
         // visualizar o carrinho
         else if (opcao == 5)
         {
-          verCarrinho();
+          verCarrinho(carrinho);
         }
 
         // excluir item do carrinho
@@ -204,7 +210,6 @@ int main()
           cout << "Digite o nome do item a ser excluido do carrinho: ";
           cin >> itemASerExcluido;
           excluirItemDoCarrinho(carrinho, itemASerExcluido);
-          verCarrinho();
         }
 
         // sair do loop
@@ -218,8 +223,8 @@ int main()
     // Sair do sistema
     else if (perfil == 3)
     {
-      salvarSanduiche();
-      salvarSuco();
+      salvarSanduiche(); // Salva as informações dos sanduíches em um arquivo
+      salvarSuco();      // Salva as informações dos sucos em um arquivo
       cout << "\n\t==========================" << endl;
       cout << "\t    Sistema finalizado.    " << endl;
       cout << "\t Agradecemos a sua visita! " << endl;

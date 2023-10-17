@@ -10,5 +10,3 @@ Limao
 7.5
 Morango
 10
-melancia
-4

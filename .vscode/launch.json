@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Alinne/Documents/UFRN/BTI/2023.2/LP1/PROJETO 1AUNIDADE/prjeto1",
-      "program": "c:/Users/Alinne/Documents/UFRN/BTI/2023.2/LP1/PROJETO 1AUNIDADE/prjeto1/build/Debug/outDebug",
+      "cwd": "c:/Users/Alinne/Documents/UFRN/BTI/2023.2/LP1/PROJETO 1AUNIDADE/prjeto1/LP1",
+      "program": "c:/Users/Alinne/Documents/UFRN/BTI/2023.2/LP1/PROJETO 1AUNIDADE/prjeto1/LP1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
